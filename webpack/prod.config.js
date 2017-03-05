@@ -4,10 +4,13 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const config = require('../config').webpack
 
 module.exports = {
-  entry: './frontend/index.js',
+  entry: {
+    app: './frontend/app/index.js',
+    login: './frontend/login/index.js'
+  },
   output: {
     path: config.outputPath,
-    filename: config.outputFilename,
+    filename: '[name].js',
     publicPath: config.outputPublicPath
   },
   module: {
@@ -61,7 +64,7 @@ module.exports = {
   ],
   resolve: {
     modules: [
-      path.join(__dirname, 'frontend'),
+      path.join(__dirname, '../frontend'),
       'node_modules'
     ]
   }

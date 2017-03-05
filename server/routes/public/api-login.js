@@ -1,23 +1,26 @@
 const Joi = require('koa-joi-router').Joi
 const User = require('../../models/User')
-const auth = require('../../lib/auth')
 
 module.exports = {
   method: 'post',
-  path: '/',
+  path: '/login',
   validate: {
     body: {
       email: Joi.string().email().required(),
       password: Joi.string().required()
     },
-    type: 'json'
+    type: 'form'
   },
   handler: function *() {
     const { email, password } = this.request.body
-    const user = yield User.auth(email, password)
-    this.body = {
-      user: user.format(),
-      token: auth.token.sign(user)
+
+    try {
+      const user = yield User.auth(email, password)
+      this.session.userId = user.id
+      this.redirect('/')
+    } catch (e) {
+      this.flash = { error: e.message }
+      this.redirect('/login')
     }
   }
 }

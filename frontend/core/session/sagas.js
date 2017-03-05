@@ -1,4 +1,3 @@
-import ls from 'local-storage'
 import { push } from 'react-router-redux'
 import { call, fork, put, takeLatest } from 'redux-saga/effects'
 import { startSubmit, stopSubmit } from 'redux-form'
@@ -16,7 +15,6 @@ export function * login ({ payload }) {
     yield put({ type: sessionActions.LOGIN_SUCCESS, payload: { ...data } })
     yield put(stopSubmit(formId))
 
-    ls.set('token', data.token)
     yield put(push('/'))
   } catch (err) {
     yield put(stopSubmit(formId, { _error: err.message }))

@@ -18,6 +18,5 @@ module.exports = {
   useDist,
   outputPublicPath: useDist ? WEBPACK_PUBLIC_PATH : `${clientUrl}${WEBPACK_PUBLIC_PATH}`,
   outputPath: path.resolve(process.cwd(), WEBPACK_DIR),
-  outputFilename: 'bundle.js',
   cssFilename: 'bundle.css'
 }

@@ -2,11 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import { getSession } from 'core/session'
-import AppHeader from 'views/components/AppHeader'
+import AppHeader from 'components/AppHeader'
 
-function App ({ children, loggedIn }) {
-  if (!loggedIn) return children
-
+function App ({ children }) {
   return (
     <div>
       <AppHeader />

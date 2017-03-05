@@ -3,17 +3,21 @@ const path = require('path')
 const env = require('../config/env')
 const config = require('../config').webpack
 
+const hotLoader = [
+  'react-hot-loader/patch',
+  `webpack-dev-server/client?${config.clientUrl}`,
+  'webpack/hot/only-dev-server'
+]
+
 module.exports = {
   devtool: 'eval',
-  entry: [
-    'react-hot-loader/patch',
-    `webpack-dev-server/client?${config.clientUrl}`,
-    'webpack/hot/only-dev-server',
-    './frontend/index.js'
-  ],
+  entry: {
+    login: [...hotLoader, './frontend/login/index.js'],
+    app: [...hotLoader, './frontend/app/index.js']
+  },
   output: {
     path: config.outputPath,
-    filename: config.outputFilename,
+    filename: '[name].js',
     publicPath: config.outputPublicPath
   },
   module: {
