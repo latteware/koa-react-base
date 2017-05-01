@@ -1,18 +1,24 @@
 import { sessionActions } from './actions'
 
-export function sessionReducer (state = {}, { payload, type }) {
+export const initialState = {
+  jwt: window.jwt
+}
+
+export function sessionReducer (state = initialState, { payload, type }) {
   switch (type) {
     case sessionActions.LOGIN_SUCCESS:
     case sessionActions.SIGNUP_SUCCESS:
     case sessionActions.RESET_PASSWORD_SUCCESS:
       return {
         ...state,
+        jwt: payload.jwt,
         loggedIn: true
       }
 
     case sessionActions.LOGOUT_SUCCESS:
       return {
         ...state,
+        jwt: undefined,
         loggedIn: false
       }
 

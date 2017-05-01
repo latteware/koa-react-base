@@ -1,10 +1,11 @@
 const requireindex = require('es6-requireindex')
+const path = require('path')
 const debug = require('debug')
 const convert = require('koa-convert')
 const router = require('koa-joi-router')
 const { forEach } = require('lodash')
 
-const resouces = requireindex(__dirname, { recursive: false })
+const resouces = requireindex(path.join(__dirname, 'routers'), { recursive: false })
 
 module.exports = function api (app) {
   forEach(resouces, ({ prefix, routes, middlewares }) => {

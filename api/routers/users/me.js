@@ -2,6 +2,7 @@ module.exports = {
   method: 'get',
   path: '/me',
   handler: function * () {
+    console.log('User? =>', this.state.user)
     if (this.state.user) {
       this.body = {
         loggedIn: true,

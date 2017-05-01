@@ -17,7 +17,10 @@ const userSchema = new Schema({
   screenName: { type: String, unique: true },
   displayName: { type: String },
 
-  resetPasswordToken: { type: String, default: v4 }
+  resetPasswordToken: { type: String, default: v4 },
+
+  uuid: { type: String, default: v4 },
+  apiToken: { type: String, default: v4 }
 })
 
 userSchema.pre('save', function (next) {
