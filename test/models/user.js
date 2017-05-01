@@ -1,11 +1,11 @@
 const { expect } = require('chai')
-const User = require('../../server/models/User')
+const User = require('models/User')
 const { clearDatabase } = require('../utils')
 
 require('co-mocha')
 
 describe('user', () => {
-  beforeEach(function *() {
+  beforeEach(function * () {
     yield clearDatabase()
   })
 

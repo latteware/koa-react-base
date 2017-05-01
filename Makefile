@@ -12,11 +12,11 @@ help:
 
 
 dev-server:
-	@$(BIN_DIR)/nodemon --ignore frontend server/index.js 
+	@$(BIN_DIR)/nodemon --ignore frontend app/server/index.js 
 
 
 frontend:
-	@$(BIN_DIR)/webpack-dev-server --config ./webpack/dev.config.js --port ${WEBPACK_PORT} --host ${WEBPACK_HOST} --hot
+	@$(BIN_DIR)/webpack-dev-server --config ./app/webpack/dev.config.js --port ${WEBPACK_PORT} --host ${WEBPACK_HOST} --hot
 
 
 start:
@@ -25,6 +25,6 @@ start:
 
 dist: export NODE_ENV = production
 dist:
-	@$(BIN_DIR)/webpack --config ./webpack/prod.config.js --progress
+	@$(BIN_DIR)/webpack --config ./app/webpack/prod.config.js --progress
 
 .PHONY: help dev-server frontend start dist

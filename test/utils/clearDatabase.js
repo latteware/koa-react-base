@@ -1,5 +1,5 @@
 const { map } = require('lodash')
-const models = require('../../server/models')
+const models = require('models')
 
 module.exports = function clearDatabase () {
   const promises = map(models, model => model.remove({}))
