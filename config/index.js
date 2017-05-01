@@ -7,12 +7,12 @@ const env = process.env.NODE_ENV || 'development'
 const envPath = path.resolve(__dirname, `../.env.${env}`)
 
 try {
-	dotenv.load({
-		path: envPath,
-		silent: true
-	})
+  dotenv.load({
+    path: envPath,
+    silent: true
+  })
 } catch (e) {
-	console.error('Failed to resolve', envPath, e)
+  console.error('Failed to resolve', envPath, e)
 }
 
 dotenv.load({

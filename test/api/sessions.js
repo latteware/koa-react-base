@@ -4,7 +4,7 @@ require('co-supertest')
 const { expect } = require('chai')
 const http = require('http')
 const { clearDatabase, createUser } = require('../utils')
-const app = require('../../server/app')
+const app = require('app/server/app')
 const request = require('supertest')
 
 function test () {
@@ -14,12 +14,12 @@ function test () {
 describe('/sessions', () => {
   const password = '1234'
 
-  beforeEach(function *() {
+  beforeEach(function * () {
     yield clearDatabase()
   })
 
   describe('post', () => {
-    it('should return a error', function *() {
+    it('should return a error', function * () {
       const user = yield createUser({ password })
 
       yield test()
@@ -30,7 +30,7 @@ describe('/sessions', () => {
         .end()
     })
 
-    it('should create a session', function *() {
+    it('should create a session', function * () {
       const user = yield createUser({ password })
 
       const res = yield test()
