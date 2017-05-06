@@ -12,9 +12,10 @@ describe('user', () => {
   describe('auth', () => {
     const email = 'user@app.com'
     const password = '1234'
+    const screenName = 'User'
 
     it('should return a error 401', function * () {
-      yield User.create({ email, password })
+      yield User.create({ email, password, screenName })
       try {
         yield User.auth(email, '4321')
       } catch (err) {
@@ -23,7 +24,7 @@ describe('user', () => {
     })
 
     it('should auth an user with correct credentials', function * () {
-      yield User.create({ email, password })
+      yield User.create({ email, password, screenName })
       const user = yield User.auth(email, password)
       expect(user.email).equal(email)
     })

@@ -4,14 +4,14 @@ require('co-supertest')
 const { expect } = require('chai')
 const http = require('http')
 const { clearDatabase, createUser } = require('../utils')
-const app = require('app/server/app')
+const api = require('api/')
 const request = require('supertest')
 
 function test () {
-  return request(http.createServer(app.callback()))
+  return request(http.createServer(api.callback()))
 }
 
-describe('/sessions', () => {
+describe('/user', () => {
   const password = '1234'
 
   beforeEach(function * () {
@@ -23,7 +23,7 @@ describe('/sessions', () => {
       const user = yield createUser({ password })
 
       yield test()
-        .post('/api/sessions')
+        .post('/api/user/login')
         .send({ password: '4321', email: user.email })
         .set('Accept', 'application/json')
         .expect(401)
@@ -34,7 +34,7 @@ describe('/sessions', () => {
       const user = yield createUser({ password })
 
       const res = yield test()
-        .post('/api/sessions')
+        .post('/api/user/login')
         .send({ password, email: user.email })
         .set('Accept', 'application/json')
         .expect(200)

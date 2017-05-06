@@ -44,7 +44,11 @@ export default {
         }
 
         if (res.status !== 200) {
-          return reject(new Error(res.status + ':' + res.body ? res.body.message : res.text))
+          if (res.body) {
+            return reject(new Error(res.status + ':' + res.body.message))
+          } else {
+            return reject(new Error(res.status + ':' + res.text))
+          }
         }
 
         resolve(res.body)

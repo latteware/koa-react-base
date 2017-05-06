@@ -4,7 +4,7 @@ const jwt = require('lib/auth/jwt')
 
 module.exports = {
   method: 'post',
-  path: '/',
+  path: '/login',
   validate: {
     body: {
       email: Joi.string().email().required(),
@@ -15,8 +15,6 @@ module.exports = {
   handler: function * () {
     const { email, password } = this.request.body
     const user = yield User.auth(email, password)
-
-    this.session.userId = user.id
 
     this.body = {
       user: user.format(),

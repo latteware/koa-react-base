@@ -6,7 +6,7 @@ const app = require('./app/server')
 const api = require('./api')
 
 api.listen(apiPort)
-console.log(`App started on port ${apiPort}`)
+console.log(`Api started on port ${apiPort}`)
 
 app.listen(appPort)
-console.log(`Api started on port ${appPort}`)
+console.log(`App started on port ${appPort}`)

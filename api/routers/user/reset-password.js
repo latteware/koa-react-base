@@ -26,7 +26,6 @@ module.exports = {
     user.resetPasswordToken = null
     yield user.save()
 
-    this.session.userId = user.id
     this.body = {
       user: user.format(),
       jwt: jwt.sign({

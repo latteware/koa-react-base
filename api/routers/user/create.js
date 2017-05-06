@@ -4,7 +4,7 @@ const jwt = require('lib/auth/jwt')
 
 module.exports = {
   method: 'post',
-  path: '/register',
+  path: '/',
   validate: {
     body: {
       screenName: Joi.string().required(),
@@ -19,8 +19,6 @@ module.exports = {
 
     const user = yield User.register(screenName, displayName, email, password)
     yield user.sendValidationEmail()
-
-    this.session.userId = user.id
 
     this.body = {
       user: user.format(),
