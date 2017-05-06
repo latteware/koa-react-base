@@ -1,9 +1,9 @@
 // node tasks/send-reset-email --email archr@app.com
 require('../config')
-require('server/databases/mongo')
+require('lib/databases/mongo')
 
-const { User } = require('server/models')
-const Task = require('server/lib/task')
+const { User } = require('models')
+const Task = require('lib/task')
 
 const task = new Task(function * (argv) {
   if (!argv.email) { throw new Error('email and password are required') }

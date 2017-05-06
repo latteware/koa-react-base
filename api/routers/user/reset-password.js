@@ -1,5 +1,6 @@
 const Joi = require('koa-joi-router').Joi
 const User = require('models/User')
+const jwt = require('lib/auth/jwt')
 
 module.exports = {
   method: 'post',
@@ -25,7 +26,12 @@ module.exports = {
     user.resetPasswordToken = null
     yield user.save()
 
-    this.session.userId = user.id
-    this.body = {user: user.format()}
+    this.body = {
+      user: user.format(),
+      jwt: jwt.sign({
+        uuid: user.uuid,
+        apiToken: user.apiToken
+      })
+    }
   }
 }

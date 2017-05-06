@@ -11,7 +11,7 @@ class LoginForm extends React.Component {
 
     return (
       <form className={cx('box', 'form')} onSubmit={handleSubmit}>
-        <h5 className='title is-5 has-text-centered'>Sign in with your e-mail</h5>
+        <h5 className='title is-5 has-text-centered'>Log in with your e-mail</h5>
 
         <p className='control'>
           <Field

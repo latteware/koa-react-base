@@ -15,13 +15,6 @@ module.exports = {
     user.validEmail = true
     yield user.save()
 
-    this.session.userId = user.id
-    this.flash = {
-      className: 'is-success',
-      header: 'Success',
-      body: 'Email validated'
-    }
-
     this.redirect('/app')
   }
 }

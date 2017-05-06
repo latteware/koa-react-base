@@ -42,7 +42,7 @@ export function * signUp ({ payload }) {
 }
 
 export function * logout () {
-  yield call(api.logout)
+  yield call(api.revoke)
   yield put({ type: sessionActions.LOGOUT_SUCCESS, payload: {} })
 
   yield call(getCurrentUser)

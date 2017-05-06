@@ -10,18 +10,17 @@ help:
 	@echo "  \033[34mstart\033[0m       start server and client"
 	@echo "  \033[34mdist\033[0m        build the app"
 
-
 dev-server:
-	@$(BIN_DIR)/nodemon --ignore frontend app/server/index.js 
+	@$(BIN_DIR)/nodemon --ignore frontend runner.js 
 
+api-server:
+	@$(BIN_DIR)/nodemon --ignore frontend api/runner.js 	
 
 frontend:
 	@$(BIN_DIR)/webpack-dev-server --config ./app/webpack/dev.config.js --port ${WEBPACK_PORT} --host ${WEBPACK_HOST} --hot
 
-
 start:
 	@$(MAKE) dev-server & $(MAKE) frontend
-
 
 dist: export NODE_ENV = production
 dist:

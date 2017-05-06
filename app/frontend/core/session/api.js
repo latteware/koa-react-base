@@ -2,26 +2,26 @@ import http from '../http'
 
 export default {
   login: (data) => {
-    return http.post('/sessions', data)
+    return http.post('/api/user/login', data)
   },
 
-  logout: () => {
-    return http.del('/sessions')
+  revoke: () => {
+    return http.del('/api/user/', null)
   },
 
   resetPassword: (data) => {
-    return http.post('/sessions/reset-password', data)
+    return http.post('/api/user/reset-password', data)
   },
 
   requestPassword: (data) => {
-    return http.post('/sessions/request-password', data)
+    return http.post('/api/user/request-password', data)
   },
 
   signUp: (data) => {
-    return http.post('/register', data)
+    return http.post('/api/user', data)
   },
 
   getCurrentUser: () => {
-    return http.get('/sessions/me')
+    return http.get('/api/user/me')
   }
 }

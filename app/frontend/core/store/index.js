@@ -6,4 +6,6 @@ if (process.env.ENV !== 'production') {
   configureStore = require('./configureStore.prod').default
 }
 
-export default configureStore
+const store = configureStore()
+
+export default store

@@ -12,6 +12,11 @@
 <body>
   <div id="app" style="height: 100%;"></div>
   <script >
+  window.apiHost = '{{ apiHost }}'
+  window.appHost = '{{ appHost }}'
+  {% if jwt %}
+    window.jwt = '{{ jwt }}'
+  {% endif %}
   {% if flash %}
       window.flash = {{ flash | safe }} 
   {% endif %}
