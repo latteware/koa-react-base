@@ -1,9 +1,9 @@
 // node tasks/add-user --email archr@app.com --password foobar
 require('../config')
-require('server/databases/mongo')
+require('lib/databases/mongo')
 
-const { User } = require('server/models')
-const Task = require('server/lib/task')
+const { User } = require('models')
+const Task = require('lib/task')
 
 const task = new Task(function * (argv) {
   console.log('=>', argv)

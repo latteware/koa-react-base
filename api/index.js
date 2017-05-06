@@ -17,7 +17,7 @@ if (env !== 'test') {
 }
 
 // Allow cors
-app.use(cors())
+app.use(convert(cors()))
 
 // Error handler
 app.use(convert(errorHandler))

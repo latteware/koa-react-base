@@ -1,6 +1,6 @@
 const Joi = require('koa-joi-router').Joi
 const User = require('models/User')
-const jwt = require('lib/jwt')
+const jwt = require('lib/auth/jwt')
 
 module.exports = {
   method: 'post',
