@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>App</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+  {% if useDist %}
+    <link rel="stylesheet" type="text/css" href="{{outputPublicPath}}{{cssFilename}}">
+  {% endif %}
+</head>
+<body>
+  <div id="app" style="height: 100%;"></div>
+  <script >
+  window.apiHost = '{{ apiHost }}'
+  window.appHost = '{{ appHost }}'
+  {% if flash %}
+      window.flash = {{ flash | safe }} 
+  {% endif %}
+  </script>
+  <script type="text/javascript" src="{{outputPublicPath}}{{outputFilename}}"></script>
+</body>
+</html>

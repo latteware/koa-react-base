@@ -4,7 +4,8 @@ const bcrypt = require('bcrypt')
 module.exports = function * auth (email, password) {
   const User = this
 
-  const user = yield User.findOne({ email })
+  const userEmail = email.toLowerCase()
+  const user = yield User.findOne({email: userEmail})
   assert(user, 401, 'Invalid email/password')
 
   const isValid = yield new Promise((resolve, reject) => {

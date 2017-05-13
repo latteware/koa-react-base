@@ -18,7 +18,7 @@ app.use(views(`${__dirname}/views`, {
 }))
 
 // Static files
-app.use(mount(server.static, serve(webpack.outputPath + '/app', { defer: false })))
+app.use(mount(server.static, serve(webpack.outputPath + '/admin', { defer: false })))
 
 // Logger
 if (env !== 'test') {

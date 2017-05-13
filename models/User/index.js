@@ -3,10 +3,12 @@ const { Schema } = require('mongoose')
 const { extend } = require('lodash')
 const { v4 } = require('uuid')
 const bcrypt = require('bcrypt')
+const dataTables = require('mongoose-datatables')
+
 const statics = require('./statics')
 const methods = require('./methods')
 
-const SALT_WORK_FACTOR = process.env.SALT_WORK_FACTOR
+const SALT_WORK_FACTOR = parseInt(process.env.SALT_WORK_FACTOR)
 
 const userSchema = new Schema({
   name: { type: String },
@@ -14,8 +16,9 @@ const userSchema = new Schema({
   email: { type: String, required: true, unique: true, trim: true },
   validEmail: {type: Boolean, default: false},
 
-  screenName: { type: String, unique: true },
+  screenName: { type: String, unique: true, required: true },
   displayName: { type: String },
+  isAdmin: {type: Boolean, default: false},
 
   resetPasswordToken: { type: String, default: v4 },
 
@@ -26,6 +29,10 @@ const userSchema = new Schema({
 userSchema.pre('save', function (next) {
   if (this.isNew) {
     this.id = this._id.toString()
+  }
+
+  if (this.email) {
+    this.email = this.email.toLowerCase()
   }
 
   next()
@@ -46,5 +53,7 @@ userSchema.pre('save', function (next) {
 
 extend(userSchema.statics, statics)
 extend(userSchema.methods, methods)
+
+userSchema.plugin(dataTables)
 
 module.exports = mongoose.model('User', userSchema)
