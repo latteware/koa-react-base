@@ -3,7 +3,7 @@ import store from './store'
 
 export default {
   get (endpoint, baseUrl) {
-    return this.request('get', endpoint, baseUrl)
+    return this.request('get', endpoint, null, baseUrl)
   },
 
   post (endpoint, data, baseUrl) {
