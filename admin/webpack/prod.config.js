@@ -6,7 +6,7 @@ const config = require('../../config').webpack
 module.exports = {
   entry: './app/frontend/index.js',
   output: {
-    path: config.outputPath + '/app',
+    path: config.outputPath + '/admin',
     filename: config.outputFilename,
     publicPath: config.outputPublicPath
   },
@@ -61,7 +61,7 @@ module.exports = {
   ],
   resolve: {
     modules: [
-      path.join(__dirname, '../../app/frontend'),
+      path.join(__dirname, '../../admin/frontend'),
       'node_modules'
     ]
   }

@@ -1,0 +1,13 @@
+.page {
+  background: #eaeaea;
+  font-family: Roboto;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.resetPassword{
+	text-align: center;
+}

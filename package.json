@@ -34,6 +34,7 @@
     "mandrill-api": "^1.0.45",
     "minimist": "^1.2.0",
     "mongoose": "^4.9.4",
+    "mongoose-datatables": "^3.0.0",
     "nunjucks": "^3.0.0",
     "react-router-redux": "^4.0.8",
     "redux-logger": "^2.8.1"
