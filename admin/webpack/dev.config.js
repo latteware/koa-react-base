@@ -40,25 +40,23 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
-        ]
+        use: ['style-loader', 'css-loader', 'sass-loader']
       }
     ]
   },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify(env)
+        NODE_ENV: JSON.stringify(env)
       }
     })
   ],
   resolve: {
-    modules: [
-      path.join(__dirname, '../../admin/frontend'),
-      'node_modules'
-    ]
+    modules: [path.join(__dirname, '../../admin/frontend'), 'node_modules']
+  },
+  devServer: {
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    }
   }
 }
