@@ -14,13 +14,13 @@ module.exports = {
     },
     type: 'json'
   },
-  handler: function * () {
-    const { screenName, displayName, email, password } = this.request.body
+  handler: async function (ctx) {
+    const { screenName, displayName, email, password } = ctx.request.body
 
-    const user = yield User.register(screenName, displayName, email, password)
-    yield user.sendValidationEmail()
+    const user = await User.register(screenName, displayName, email, password)
+    await user.sendValidationEmail()
 
-    this.body = {
+    ctx.body = {
       user: user.format(),
       jwt: jwt.sign({
         uuid: user.uuid,

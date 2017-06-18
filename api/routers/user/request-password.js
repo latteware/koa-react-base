@@ -10,14 +10,14 @@ module.exports = {
     },
     type: 'json'
   },
-  handler: function * () {
-    const { email } = this.request.body
+  handler: async function (ctx) {
+    const { email } = ctx.request.body
 
-    const user = yield User.findOne({email})
-    this.assert(user, 404, 'User not found')
+    const user = await User.findOne({ email })
+    ctx.assert(user, 404, 'User not found')
 
-    yield user.sendResetPasswordEmail()
+    await user.sendResetPasswordEmail()
 
-    this.body = {}
+    ctx.body = {}
   }
 }

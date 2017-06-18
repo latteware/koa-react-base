@@ -1,8 +1,8 @@
 module.exports = {
   method: 'delete',
   path: '/',
-  handler: function * () {
-    this.body = {
+  handler: async function (ctx) {
+    ctx.body = {
       success: true
     }
   }

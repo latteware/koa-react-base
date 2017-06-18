@@ -1,14 +1,15 @@
 module.exports = {
   method: 'get',
   path: '/me',
-  handler: function * () {
-    if (this.state.user) {
-      this.body = {
+  handler: async function (ctx) {
+    if (ctx.state.user) {
+      const user = await ctx.state.user.toPublic()
+      ctx.body = {
         loggedIn: true,
-        user: yield this.state.user.toPublic()
+        user
       }
     } else {
-      this.body = {
+      ctx.body = {
         loggedIn: false
       }
     }

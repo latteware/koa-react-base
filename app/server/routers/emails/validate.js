@@ -3,18 +3,22 @@ const User = require('models/User')
 module.exports = {
   method: 'get',
   path: '/validate-email',
-  handler: function * () {
-    const { token, email } = this.query
+  handler: async function (ctx) {
+    const { token, email } = ctx.query
 
-    if (!email) { this.throw(401) }
+    if (!email) {
+      ctx.throw(401)
+    }
 
-    const user = yield User.findOne({email})
+    const user = await User.findOne({ email })
 
-    if (user.resetPasswordToken !== token && !email) { this.throw(403) }
+    if (user.resetPasswordToken !== token && !email) {
+      ctx.throw(403)
+    }
 
     user.validEmail = true
-    yield user.save()
+    await user.save()
 
-    this.redirect('/app')
+    ctx.redirect('/app')
   }
 }
