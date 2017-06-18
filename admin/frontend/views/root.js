@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Provider, connect } from 'react-redux'
 import { Router } from 'react-router'
 import routes from './routes'
@@ -38,8 +39,8 @@ class Root extends React.Component {
 }
 
 Root.propTypes = {
-  history: React.PropTypes.object.isRequired,
-  store: React.PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  store: PropTypes.object.isRequired
 }
 
 const mapStateToProps = function (state) {

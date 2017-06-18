@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import cx from 'classnames'
 
 export default class Button extends React.Component {
@@ -17,9 +18,9 @@ export default class Button extends React.Component {
 }
 
 Button.propTypes = {
-  primary: React.PropTypes.bool,
-  loading: React.PropTypes.bool,
-  onClick: React.PropTypes.func
+  primary: PropTypes.bool,
+  loading: PropTypes.bool,
+  onClick: PropTypes.func
 }
 
 Button.defaultPropTypes = {
