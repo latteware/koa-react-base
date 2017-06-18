@@ -42,6 +42,7 @@ export function sessionReducer (state = initialState, { payload, type }) {
       }
 
     case sessionActions.GET_CURRENT_USER_FAILED:
+      window.localStorage.removeItem('jwt')
       return {
         ...state,
         loaded: true,
