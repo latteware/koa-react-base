@@ -12,11 +12,11 @@ module.exports = {
     },
     type: 'json'
   },
-  handler: function * () {
-    const { email, password } = this.request.body
-    const user = yield User.auth(email, password)
+  handler: async function (ctx) {
+    const { email, password } = ctx.request.body
+    const user = await User.auth(email, password)
 
-    this.body = {
+    ctx.body = {
       user: user.format(),
       jwt: jwt.sign({
         uuid: user.uuid,

@@ -14,19 +14,27 @@ module.exports = {
     },
     type: 'json'
   },
-  handler: function * () {
-    const body = this.request.body
+  handler: async function (ctx) {
+    const body = ctx.request.body
 
-    const user = yield User.findOne({email: body.email})
-    this.assert(user, 404, 'User not found')
-    this.assert(user.resetPasswordToken === body.token, 401, `Token doesn't match`)
-    this.assert(body.password === body.confirmPassword, 401, `Passwords doesn't match`)
+    const user = await User.findOne({ email: body.email })
+    ctx.assert(user, 404, 'User not found')
+    ctx.assert(
+      user.resetPasswordToken === body.token,
+      401,
+      `Token doesn't match`
+    )
+    ctx.assert(
+      body.password === body.confirmPassword,
+      401,
+      `Passwords doesn't match`
+    )
 
     user.password = body.password
     user.resetPasswordToken = null
-    yield user.save()
+    await user.save()
 
-    this.body = {
+    ctx.body = {
       user: user.format(),
       jwt: jwt.sign({
         uuid: user.uuid,
